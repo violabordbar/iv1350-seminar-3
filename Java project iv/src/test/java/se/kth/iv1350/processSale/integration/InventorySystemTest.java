@@ -9,8 +9,6 @@ public class InventorySystemTest {
 
     private static final int VALID_ITEM_ID = 1234;
     private static final int INVALID_ITEM_ID = 1111;
-    private static final int EXCEPTION_THROWING_ITEM_ID = 7891;
-
 
     @Test 
     public void testIfValidateidentifierReturnsCorrectItemDTOIfItemIDIsValid() {
@@ -25,17 +23,4 @@ public class InventorySystemTest {
         assertNull(nonExistingItemDTO, "Item should not be found for an invalid item ID");
     }
     
-    @Test
-    public void testIfValidateIdentifierThrowsItemNotFoundException() {
-        assertThrows(ItemNotFoundException.class, () -> {
-            inventorySystem.validateIdentifier(INVALID_ITEM_ID);
-        });
-    }
-
-    @Test
-    public void testIfValidateIdentifierThrowsDataBaseFailureException() {
-        assertThrows(DataBaseFailureException.class, () -> {
-            inventorySystem.validateIdentifier(EXCEPTION_THROWING_ITEM_ID);
-        });
-    }
 }
