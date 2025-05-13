@@ -1,5 +1,6 @@
 package se.kth.iv1350.processSale.integration;
 
+import se.kth.iv1350.processSale.model.RegisteredItem;
 import se.kth.iv1350.processSale.model.Sale;
 
 /**
@@ -21,27 +22,28 @@ public class DiscountHandler{
 	 * 
 	 * @param customerID The identification number of the customer.
 	 * @param sale The sale object containing the list of items and the total cost.
-	 * @return The price after the discount has been applied.
+	 * @return The price after the discount has been applied. If no conditions are met, the total cost is returned without any discount.
 	 */
 	public double findDiscount(int customerID, Sale sale) {
 
 		double totalCost = sale.calculateCurrentPrice();
-		int numberOfItems = sale.getListOfItems().size();
+		int numberOfItems = 0;
+		for (RegisteredItem item : sale.getListOfItems()) {
+			numberOfItems += item.getQuantity();
+		}
 
 		if(customerID == 1212) {
-			return totalCost * 0.8;
+			totalCost *= 0.8;
 		}
 
 		if(totalCost > 500){
-			return totalCost * 0.85;
+			totalCost *= 0.85;
 		}
 
-		if(numberOfItems >= 15){
-			return totalCost - 100;
+		if(numberOfItems >= 10){
+			totalCost -= 100;
 		}
 
-		else {
-			return totalCost;
-		}
+		return totalCost;
 	}
 }
