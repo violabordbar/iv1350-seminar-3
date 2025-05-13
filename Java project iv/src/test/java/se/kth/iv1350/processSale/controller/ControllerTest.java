@@ -37,7 +37,7 @@ public class ControllerTest{
     }
 
     @Test
-    public void testIfItemQuantityDefaultsToZeroWhenUnspecified() {
+    public void testIfItemQuantityDefaultsToOneWhenUnspecified() {
        controller.registerNewItem(1234, 0);
        controller.receivePayment(100);
        RegisteredItem itemWithTestingQuantity = controller.getSaleInfo().getListOfItems().get(1);
