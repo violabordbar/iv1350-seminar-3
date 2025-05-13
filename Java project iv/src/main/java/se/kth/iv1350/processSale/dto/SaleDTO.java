@@ -27,16 +27,16 @@ public class SaleDTO{
 	 * @param totalVAT The total VAT of the sale.
 	 * @param paidAmount The amount paid by the customer.
 	 * @param change The change to be given to the customer.
-	 * @param listOfItems A list of the registered items, represented as RegisteredItem objects.
+	 * @param listOfItems The list of registered items in the sale represented as RegisteredItem objects.
 	 */
-	public SaleDTO(LocalTime saleTime, LocalDate saleDate, double totalPrice, double totalVAT, int paidAmount, int change, List<RegisteredItem> listOfItems) {
+	public SaleDTO(LocalTime saleTime, LocalDate saleDate, double totalPrice, double totalVAT, int paidAmount, int change, List<RegisteredItem> originalList) {
 		this.saleTime = saleTime;
 		this.saleDate = saleDate;
 		this.totalPrice = totalPrice;
 		this.totalVAT = totalVAT;
 		this.paidAmount = paidAmount;
 		this.change = change;
-		this.listOfItems = listOfItems;
+		this.listOfItems = List.copyOf(originalList);
 	}
 
 		/**
